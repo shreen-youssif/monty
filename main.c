@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
         if (opcode && strcmp(opcode, "push") == 0)
         {
             arg = strtok(NULL, " \t\n");
-            if (!arg || !atoi(arg))
+            if (!arg || !is_valid_integer(arg))
             {
                 handle_error("L%d: usage: push integer", line_number);
             }
@@ -95,6 +95,10 @@ int main(int argc, char *argv[])
 	else if (opcode && strcmp(opcode, "pstr") == 0)
         {
             pstr(&stack, line_number);
+        }
+	else if (opcode && strcmp(opcode, "rotl") == 0)
+        {
+            rotl(&stack, line_number);
         }
         else
         {

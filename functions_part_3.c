@@ -72,3 +72,29 @@ void pstr(stack_t **stack, unsigned int line_number)
 
     putchar('\n');
 }
+/**
+ * rotl - Rotate the stack to the top.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+    stack_t *first, *last;
+
+    (void)line_number;
+    if (!stack || !*stack || !(*stack)->next)
+        return;
+
+    first = *stack;
+    last = first;
+
+    while (last->next)
+        last = last->next;
+
+    (*stack) = first->next;
+    (*stack)->prev = NULL;
+
+    first->next = NULL;
+    first->prev = last;
+    last->next = first;
+}
