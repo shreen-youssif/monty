@@ -1,5 +1,11 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
+/**
+ * main - Entry point for the Monty program.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line argument strings.
+ * Return: EXIT_SUCCESS if successful, EXIT_FAILURE otherwise.
+*/
 int main(int argc, char *argv[])
 {
     FILE *file;

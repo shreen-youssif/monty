@@ -1,4 +1,10 @@
 #include "monty.h"
+/**
+ * push - Push a new element onto the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @value: Integer value to be pushed onto the stack.
+ * @line_number: Line number in the Monty byte code file.
+*/
 void push(stack_t **stack, int value, unsigned int line_number)
 {
     stack_t *new_node = malloc(sizeof(stack_t));
@@ -18,7 +24,11 @@ void push(stack_t **stack, int value, unsigned int line_number)
 
     *stack = new_node;
 }
-
+/**
+ * pall - Print all elements of the stack.
+ * @stack: Double pointer to the top of the stack.
+ * @line_number: Line number in the Monty byte code file.
+*/
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
@@ -31,7 +41,10 @@ void pall(stack_t **stack, unsigned int line_number)
         current = current->next;
     }
 }
-
+/**
+ * free_stack - Free all nodes in the stack.
+ * @stack: Pointer to the top of the stack.
+ */
 void free_stack(stack_t *stack)
 {
     stack_t *current = stack;

@@ -1,4 +1,9 @@
 #include "monty.h"
+/**
+ * handle_error - Print a formatted error message to stderr.
+ * @message: Format string for the error message.
+ * @...: Variable arguments corresponding to placeholders.
+*/
 
 void handle_error(const char *message, ...)
 {
