@@ -28,6 +28,11 @@ int main(int argc, char *argv[])
     while ((read = getline(&line, &len, file)) != -1)
     {
         line_number++;
+	/* Skip lines that start with '#' (comments) or are empty */
+        if (line[0] == '#' || line[0] == '\n')
+        {
+            continue;
+        }
 
         /* Tokenize the line to get opcode and argument */
         arg = strtok(line, " \t\n");
