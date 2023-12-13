@@ -56,3 +56,23 @@ void sub(stack_t **stack, unsigned int line_number)
     (*stack)->next->n -= (*stack)->n;
     pop(stack, line_number);
 }
+/**
+ * div_op - Divide the second top element of the stack by the top element.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void div_op(stack_t **stack, unsigned int line_number)
+{
+    if (!stack || !*stack || !(*stack)->next)
+    {
+        handle_error("L%d: can't div, stack too short", line_number);
+    }
+
+    if ((*stack)->n == 0)
+    {
+        handle_error("L%d: division by zero", line_number);
+    }
+
+    (*stack)->next->n /= (*stack)->n;
+    pop(stack, line_number);
+}

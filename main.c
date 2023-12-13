@@ -71,6 +71,10 @@ int main(int argc, char *argv[])
         {
             sub(&stack, line_number);
         }
+	else if (opcode && strcmp(opcode, "div") == 0)
+        {
+            div_op(&stack, line_number);
+        }
         else
         {
             handle_error("L%d: unknown instruction %s", line_number, opcode);
