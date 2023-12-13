@@ -59,6 +59,10 @@ int main(int argc, char *argv[])
         {
             swap(&stack, line_number);
         }
+	else if (opcode && strcmp(opcode, "add") == 0)
+        {
+            add(&stack, line_number);
+        }
         else
         {
             handle_error("L%d: unknown instruction %s", line_number, opcode);
