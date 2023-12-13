@@ -7,12 +7,15 @@
 
 void handle_error(const char *message, ...)
 {
-    va_list args;
-    va_start(args, message);
-    vfprintf(stderr, message, args);
-    va_end(args);
-    fprintf(stderr, "\n");
-    exit(EXIT_FAILURE);
+	va_list args;
+
+	va_start(args, message);
+
+	vfprintf(stderr, message, args);
+	va_end(args);
+
+	fprintf(stderr, "\n");
+	exit(EXIT_FAILURE);
 }
 /**
  * is_valid_integer - Check if a string is a valid integer.
@@ -21,20 +24,20 @@ void handle_error(const char *message, ...)
  */
 int is_valid_integer(const char *str)
 {
-    if (!str || *str == '\0')
-        return 0;
+	if (!str || *str == '\0')
+		return (0);
 
-    if (*str == '-' || *str == '+')
-        str++;
+	if (*str == '-' || *str == '+')
+		str++;
 
-    while (*str)
-    {
-        if (!isdigit(*str))
-            return 0;
-        str++;
-    }
+	while (*str)
+	{
+		if (!isdigit(*str))
+			return (0);
+		str++;
+	}
 
-    return 1;
+	return (1);
 }
 /**
  * rotr - Rotate the stack to the bottom.
@@ -43,25 +46,25 @@ int is_valid_integer(const char *str)
  */
 void rotr(stack_t **stack, unsigned int line_number)
 {
-    stack_t *current, *new_bottom;
+	stack_t *current, *new_bottom;
 
-    (void)line_number;
+	(void)line_number;
 
-    if (!stack || !*stack || !(*stack)->next)
-        return;
+	if (!stack || !*stack || !(*stack)->next)
+		return;
 
-    current = *stack;
+	current = *stack;
 
-    while (current->next)
-        current = current->next;
+	while (current->next)
+		current = current->next;
 
-    new_bottom = current;
-    new_bottom->next = *stack;
-    new_bottom->prev->next = NULL;
+	new_bottom = current;
+	new_bottom->next = *stack;
+	new_bottom->prev->next = NULL;
 
-    (*stack)->prev = new_bottom;
-    current->next = *stack;
-    (*stack)->prev = current;
+	(*stack)->prev = new_bottom;
+	current->next = *stack;
+	(*stack)->prev = current;
 
-    *stack = new_bottom;
+	*stack = new_bottom;
 }
