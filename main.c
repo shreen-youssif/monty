@@ -1,6 +1,5 @@
 #define _POSIX_C_SOURCE 200809L
 #include "monty.h"
-
 int main(int argc, char *argv[])
 {
     FILE *file;
@@ -10,6 +9,7 @@ int main(int argc, char *argv[])
     stack_t *stack = NULL;
     unsigned int line_number = 0;
     char *opcode;
+    char *arg;
 
     if (argc != 2)
     {
@@ -28,10 +28,14 @@ int main(int argc, char *argv[])
     while ((read = getline(&line, &len, file)) != -1)
     {
         line_number++;
-        opcode = strtok(line, " \t\n");
+
+        /* Tokenize the line to get opcode and argument */
+        arg = strtok(line, " \t\n");
+        opcode = arg;
+
         if (opcode && strcmp(opcode, "push") == 0)
         {
-            char *arg = strtok(NULL, " \t\n");
+            arg = strtok(NULL, " \t\n");
             if (!arg || !atoi(arg))
             {
                 handle_error("L%d: usage: push integer", line_number);
@@ -42,6 +46,10 @@ int main(int argc, char *argv[])
         else if (opcode && strcmp(opcode, "pall") == 0)
         {
             pall(&stack, line_number);
+        }
+        else if (opcode && strcmp(opcode, "pint") == 0)
+        {
+            pint(&stack, line_number);
         }
         else
         {

@@ -44,3 +44,17 @@ void free_stack(stack_t *stack)
         current = next;
     }
 }
+/**
+ * pint - Print the value at the top of the stack.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+    if (!stack || !*stack)
+    {
+        handle_error("L%d: can't pint, stack empty", line_number);
+    }
+
+    printf("%d\n", (*stack)->n);
+}
