@@ -67,6 +67,10 @@ int main(int argc, char *argv[])
         {
             nop(&stack, line_number);
         }
+	else if (opcode && strcmp(opcode, "sub") == 0)
+        {
+            sub(&stack, line_number);
+        }
         else
         {
             handle_error("L%d: unknown instruction %s", line_number, opcode);
