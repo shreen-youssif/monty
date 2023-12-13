@@ -35,3 +35,23 @@ void mod(stack_t **stack, unsigned int line_number)
     (*stack)->next->n %= (*stack)->n;
     pop(stack, line_number);
 }
+/**
+ * pchar - Print the character at the top of the stack.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+    if (!stack || !*stack)
+    {
+        handle_error("L%d: can't pchar, stack empty", line_number);
+    }
+
+    if ((*stack)->n < 0 || (*stack)->n > 127)
+    {
+        handle_error("L%d: can't pchar, value out of range", line_number);
+    }
+
+    putchar((*stack)->n);
+    putchar('\n');
+}
