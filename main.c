@@ -100,6 +100,10 @@ int main(int argc, char *argv[])
         {
             rotl(&stack, line_number);
         }
+	else if (opcode && strcmp(opcode, "rotr") == 0)
+        {
+            rotr(&stack, line_number);
+        }
         else
         {
             handle_error("L%d: unknown instruction %s", line_number, opcode);

@@ -31,3 +31,32 @@ int is_valid_integer(const char *str)
 
     return 1;
 }
+/**
+ * rotr - Rotate the stack to the bottom.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void rotr(stack_t **stack, unsigned int line_number)
+{
+    stack_t *current, *new_bottom;
+
+    (void)line_number;
+
+    if (!stack || !*stack || !(*stack)->next)
+        return;
+
+    current = *stack;
+
+    while (current->next)
+        current = current->next;
+
+    new_bottom = current;
+    new_bottom->next = *stack;
+    new_bottom->prev->next = NULL;
+
+    (*stack)->prev = new_bottom;
+    current->next = *stack;
+    (*stack)->prev = current;
+
+    *stack = new_bottom;
+}
