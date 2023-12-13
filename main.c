@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     while ((read = getline(&line, &len, file)) != -1)
     {
         line_number++;
-	/* Skip lines that start with '#' (comments) or are empty */
+        /* Skip lines that start with '#' (comments) or are empty */
         if (line[0] == '#' || line[0] == '\n')
         {
             continue;
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
         if (opcode && strcmp(opcode, "push") == 0)
         {
             arg = strtok(NULL, " \t\n");
-            if (!arg || !is_valid_integer(arg))
+            if (!arg || !atoi(arg))
             {
                 handle_error("L%d: usage: push integer", line_number);
             }
@@ -56,49 +56,45 @@ int main(int argc, char *argv[])
         {
             pint(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "pop") == 0)
+        else if (opcode && strcmp(opcode, "pop") == 0)
         {
             pop(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "swap") == 0)
+        else if (opcode && strcmp(opcode, "swap") == 0)
         {
             swap(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "add") == 0)
+        else if (opcode && strcmp(opcode, "add") == 0)
         {
             add(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "nop") == 0)
+        else if (opcode && strcmp(opcode, "nop") == 0)
         {
             nop(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "sub") == 0)
+        else if (opcode && strcmp(opcode, "sub") == 0)
         {
             sub(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "div") == 0)
+        else if (opcode && strcmp(opcode, "div") == 0)
         {
             div_op(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "mul") == 0)
+        else if (opcode && strcmp(opcode, "mul") == 0)
         {
             mul(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "mod") == 0)
+        else if (opcode && strcmp(opcode, "mod") == 0)
         {
             mod(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "pchar") == 0)
+        else if (opcode && strcmp(opcode, "pchar") == 0)
         {
             pchar(&stack, line_number);
         }
-	else if (opcode && strcmp(opcode, "pstr") == 0)
+        else if (opcode && strcmp(opcode, "pstr") == 0)
         {
             pstr(&stack, line_number);
-        }
-	else if (opcode && strcmp(opcode, "rotl") == 0)
-        {
-            rotl(&stack, line_number);
         }
         else
         {
@@ -112,3 +108,4 @@ int main(int argc, char *argv[])
 
     return (EXIT_SUCCESS);
 }
+
