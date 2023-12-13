@@ -58,3 +58,22 @@ void pint(stack_t **stack, unsigned int line_number)
 
     printf("%d\n", (*stack)->n);
 }
+/**
+ * pop - Remove the top element of the stack.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty byte code file.
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+    stack_t *temp = *stack;
+    if (!stack || !*stack)
+    {
+        handle_error("L%d: can't pop an empty stack", line_number);
+    }
+    *stack = (*stack)->next;
+    if (*stack)
+    {
+        (*stack)->prev = NULL;
+    }
+    free(temp);
+}
