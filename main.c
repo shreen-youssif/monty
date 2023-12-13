@@ -92,6 +92,10 @@ int main(int argc, char *argv[])
         {
             pchar(&stack, line_number);
         }
+	else if (opcode && strcmp(opcode, "pstr") == 0)
+        {
+            pstr(&stack, line_number);
+        }
         else
         {
             handle_error("L%d: unknown instruction %s", line_number, opcode);
