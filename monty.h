@@ -45,5 +45,6 @@ void free_stack(stack_t *stack);
 void handle_error(const char *message, ...);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
 
 #endif
